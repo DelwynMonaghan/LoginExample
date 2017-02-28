@@ -13,16 +13,16 @@ public class EventItem {
 
 	public static final String ITEM_SEP = System.getProperty("line.separator");
 
-	public enum Priority {
-		LOW, MED, HIGH
+	public enum Weather {
+		RAINING, SUNNY, SNOWING
 	};
 
 	public enum Status {
 		NOTDONE, DONE
 	};
 
-	public final static String TITLE = "title";
-	public final static String PRIORITY = "priority";
+	public final static String EVENT = "title";
+	public final static String WEATHER = "weather";
 	public final static String STATUS = "status";
 	public final static String DATE = "date";
 	public final static String FILENAME = "filename";
@@ -31,13 +31,13 @@ public class EventItem {
 			"yyyy-MM-dd HH:mm:ss", Locale.US);
 
 	private String mTitle = new String();
-	private Priority mPriority = Priority.LOW;
+	private Weather mWeather = Weather.RAINING;
 	private Status mStatus = Status.NOTDONE;
 	private Date mDate = new Date();
 
-	EventItem(String title, Priority priority, Status status, Date date) {
+	EventItem(String title, Weather weather, Status status, Date date) {
 		this.mTitle = title;
-		this.mPriority = priority;
+		this.mWeather = weather;
 		this.mStatus = status;
 		this.mDate = date;
 	}
@@ -46,8 +46,8 @@ public class EventItem {
 
 	EventItem(Intent intent) {
 
-		mTitle = intent.getStringExtra(EventItem.TITLE);
-		mPriority = Priority.valueOf(intent.getStringExtra(EventItem.PRIORITY));
+		mTitle = intent.getStringExtra(EventItem.EVENT);
+		mWeather = Weather.valueOf(intent.getStringExtra(EventItem.WEATHER));
 		mStatus = Status.valueOf(intent.getStringExtra(EventItem.STATUS));
 
 		try {
@@ -65,12 +65,12 @@ public class EventItem {
 		mTitle = title;
 	}
 
-	public Priority getPriority() {
-		return mPriority;
+	public Weather getPriority() {
+		return mWeather;
 	}
 
-	public void setPriority(Priority priority) {
-		mPriority = priority;
+	public void setPriority(Weather weather) {
+		mWeather = weather;
 	}
 
 	public Status getStatus() {
@@ -93,22 +93,22 @@ public class EventItem {
 	// package them for transport in an Intent
 
 	public static void packageIntent(Intent intent, String title,
-									 Priority priority, Status status, String date) {
+									 Weather weather, Status status, String date) {
 
-		intent.putExtra(EventItem.TITLE, title);
-		intent.putExtra(EventItem.PRIORITY, priority.toString());
+		intent.putExtra(EventItem.EVENT, title);
+		intent.putExtra(EventItem.WEATHER, weather.toString());
 		intent.putExtra(EventItem.STATUS, status.toString());
 		intent.putExtra(EventItem.DATE, date);
 
 	}
 
 	public String toString() {
-		return mTitle + ITEM_SEP + mPriority + ITEM_SEP + mStatus + ITEM_SEP
+		return mTitle + ITEM_SEP + mWeather + ITEM_SEP + mStatus + ITEM_SEP
 				+ FORMAT.format(mDate);
 	}
 
 	public String toLog() {
-		return "Title:" + mTitle + ITEM_SEP + "Priority:" + mPriority
+		return "Title:" + mTitle + ITEM_SEP + "Weather:" + mWeather
 				+ ITEM_SEP + "Status:" + mStatus + ITEM_SEP + "Date:"
 				+ FORMAT.format(mDate);
 	}

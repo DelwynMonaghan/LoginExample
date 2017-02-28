@@ -22,7 +22,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 import login.example.com.EventItem.Status;
-import login.example.com.EventItem.Priority;
+import login.example.com.EventItem.Weather;
 
 public class EventManagerActivity extends ListActivity {
 
@@ -161,7 +161,7 @@ public class EventManagerActivity extends ListActivity {
                 priority = reader.readLine();
                 status = reader.readLine();
                 date = EventItem.FORMAT.parse(reader.readLine());
-                mAdapter.add(new EventItem(title, Priority.valueOf(priority),
+                mAdapter.add(new EventItem(title, Weather.valueOf(priority),
                         Status.valueOf(status), date));
             }
 

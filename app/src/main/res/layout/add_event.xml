@@ -15,7 +15,7 @@
         android:id="@+id/TitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_string"
+        android:text="@string/event_string"
         android:background="#ebf3f7"
         android:textColor="#00096f"
         android:textAppearance="?android:attr/textAppearanceLarge" >
@@ -31,7 +31,7 @@
         android:ems="10"
         android:background="#ebf3f7"
         android:textColor="#00096f"
-        android:hint="@string/enter_title_string" 
+        android:hint="@string/enter_event_string"
         android:inputType="textShortMessage">
 
         <requestFocus />
@@ -80,54 +80,54 @@
             android:textColor="#00096f"/>
     </RadioGroup>
 
-    <!-- Priority -->
+    <!-- Weather -->
 
     <TextView
-        android:id="@+id/priority"
+        android:id="@+id/weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/statusGroup"
         android:layout_marginTop="25dp"
-        android:text="@string/priority_string"
+        android:text="@string/weather_string"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:background="#ebf3f7"
         android:textColor="#00096f"/>
 
     <RadioGroup
-        android:id="@+id/priorityGroup"
+        android:id="@+id/weatherGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/priority"
+        android:layout_below="@id/weather"
         android:orientation="horizontal"
         android:layout_marginTop="12dp"
-        android:text="@string/priority_string"
+        android:text="@string/weather_string"
 
         android:textColor="#00096f">
 
         <RadioButton
-            android:id="@+id/lowPriority"
+            android:id="@+id/sunnyWeather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/priority_low_string"
+            android:text="@string/weather_sunny_string"
             android:background="#ebf3f7"
             android:textColor="#00096f"/>
 
         <RadioButton
-            android:id="@+id/medPriority"
+            android:id="@+id/rainingWeather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/priority_medium_string"
+            android:text="@string/weather_raining_string"
             android:background="#ebf3f7"
             android:textColor="#00096f"/>
 
         <RadioButton
-            android:id="@+id/highPriority"
+            android:id="@+id/snowingWeather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/priority_high_string"
+            android:text="@string/weather_snowing_string"
             android:background="#ebf3f7"
             android:textColor="#00096f"/>
 
@@ -140,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/priorityGroup"
+        android:layout_below="@id/weatherGroup"
         android:layout_marginTop="25dp"
         android:text="@string/time_and_date_string"
         android:textAppearance="?android:attr/textAppearanceLarge"

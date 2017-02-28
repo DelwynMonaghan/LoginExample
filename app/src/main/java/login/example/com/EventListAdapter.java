@@ -123,9 +123,9 @@ public class EventListAdapter extends BaseAdapter {
 			}
 		});
 
-		//TODO - Display Priority in a TextView
+		//TODO - Display Weather in a TextView
 
-		final TextView priorityView = (TextView) itemLayout.findViewById(R.id.PriorityLabel);;
+		final TextView priorityView = (TextView) itemLayout.findViewById(R.id.WeatherLabel);;
 		priorityView.setText(eventItem.getPriority().toString());
 
 		// TODO - Display Time and Date.

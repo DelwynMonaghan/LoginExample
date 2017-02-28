@@ -22,7 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import login.example.com.EventItem.Status;
-import login.example.com.EventItem.Priority;
+import login.example.com.EventItem.Weather;
 
 public class AddEventActivity extends Activity {
 
@@ -37,9 +37,9 @@ public class AddEventActivity extends Activity {
 	private static TextView timeView;
 
 	private Date mDate;
-	private RadioGroup mPriorityRadioGroup;
+	private RadioGroup mWeatherRadioGroup;
 	private RadioGroup mStatusRadioGroup;
-	private EditText mTitleText;
+	private EditText mEventText;
 	private RadioButton mDefaultStatusButton;
 	private RadioButton mDefaultPriorityButton;
 
@@ -48,10 +48,10 @@ public class AddEventActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_event);
 
-		mTitleText = (EditText) findViewById(R.id.title);
+		mEventText = (EditText) findViewById(R.id.title);
 		mDefaultStatusButton = (RadioButton) findViewById(R.id.statusNotDone);
-		mDefaultPriorityButton = (RadioButton) findViewById(R.id.medPriority);
-		mPriorityRadioGroup = (RadioGroup) findViewById(R.id.priorityGroup);
+		mDefaultPriorityButton = (RadioButton) findViewById(R.id.rainingWeather);
+		mWeatherRadioGroup = (RadioGroup) findViewById(R.id.weatherGroup);
 		mStatusRadioGroup = (RadioGroup) findViewById(R.id.statusGroup);
 		dateView = (TextView) findViewById(R.id.date);
 		timeView = (TextView) findViewById(R.id.time);
@@ -126,26 +126,26 @@ public class AddEventActivity extends Activity {
 
 				// Gather EventItem data
 
-				//TODO - Get Priority
-				Priority priority = getPriority();
+				//TODO - Get Weather
+				Weather weather = getPriority();
 
 				//TODO -  Get Status
 				Status status = getStatus();
 
 				//TODO -  Title
-				String titleString = mTitleText.getText().toString();
+				String titleString = mEventText.getText().toString();
 
 				// Date
 				String fullDate = dateString + " " + timeString;
 
 				// Package EventItem data into an Intent
 				Intent data = new Intent();
-				EventItem.packageIntent(data, titleString, priority, status, fullDate);
+				EventItem.packageIntent(data, titleString, weather, status, fullDate);
 
 				//TODO - return data Intent and finish
 				// Create a new intent and save the input as an extra
 				Intent intent = new Intent();
-				EventItem.packageIntent(intent, titleString, priority, status, fullDate);
+				EventItem.packageIntent(intent, titleString, weather, status, fullDate);
 
 				// Set Activity's result with result code RESULT_OK
 				setResult(RESULT_OK, intent);
@@ -159,9 +159,9 @@ public class AddEventActivity extends Activity {
 	protected void resetToDefault() {
 		setDefaultDateTime();
 
-		mTitleText.setText("");
+		mEventText.setText("");
 
-		mPriorityRadioGroup.check(R.id.medPriority);
+		mWeatherRadioGroup.check(R.id.rainingWeather);
 		mStatusRadioGroup.check(R.id.statusNotDone);
 	}
 
@@ -218,17 +218,17 @@ public class AddEventActivity extends Activity {
 		timeString = hour + ":" + min + ":00";
 	}
 
-	private Priority getPriority() {
+	private Weather getPriority() {
 
-		switch (mPriorityRadioGroup.getCheckedRadioButtonId()) {
-			case R.id.lowPriority: {
-				return Priority.LOW;
+		switch (mWeatherRadioGroup.getCheckedRadioButtonId()) {
+			case R.id.sunnyWeather: {
+				return Weather.RAINING;
 			}
-			case R.id.highPriority: {
-				return Priority.HIGH;
+			case R.id.snowingWeather: {
+				return Weather.SNOWING;
 			}
 			default: {
-				return Priority.MED;
+				return Weather.SUNNY;
 			}
 		}
 	}
