@@ -15,8 +15,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -40,6 +42,8 @@ public class AddEventActivity extends Activity {
 	private RadioGroup mWeatherRadioGroup;
 	private RadioGroup mStatusRadioGroup;
 	private EditText mEventText;
+	private Spinner standSpinner;
+	private Spinner claySpinner;
 	private RadioButton mDefaultStatusButton;
 	private RadioButton mDefaultPriorityButton;
 
@@ -55,11 +59,15 @@ public class AddEventActivity extends Activity {
 		mStatusRadioGroup = (RadioGroup) findViewById(R.id.statusGroup);
 		dateView = (TextView) findViewById(R.id.date);
 		timeView = (TextView) findViewById(R.id.time);
+		standSpinner = (Spinner) findViewById(R.id.stand_spinner);
+		claySpinner = (Spinner) findViewById(R.id.clay_spinner);
 
+
+	//	addListenerOnButton();
+		addListenerOnSpinnerItemSelection();
 		// Set the default date and time
 
 		setDefaultDateTime();
-
 		// OnClickListener for the Date button, calls showDatePickerDialog() to
         //show
 		// the Date dialog
@@ -99,6 +107,7 @@ public class AddEventActivity extends Activity {
 			}
 		});
 
+		//add items into sp
 		//OnClickListener for the Reset Button
 
 		final Button resetButton = (Button) findViewById(R.id.resetButton);
@@ -138,14 +147,19 @@ public class AddEventActivity extends Activity {
 				// Date
 				String fullDate = dateString + " " + timeString;
 
+				//ClaySpinner
+				String numberOfClays = String.valueOf(claySpinner.getSelectedItem());
+				//StandSpinner
+				String numberOfStands = String.valueOf(standSpinner.getSelectedItem());
+
 				// Package EventItem data into an Intent
 				Intent data = new Intent();
-				EventItem.packageIntent(data, titleString, weather, status, fullDate);
+				EventItem.packageIntent(data, titleString, weather, status, fullDate, numberOfStands, numberOfClays);
 
 				//TODO - return data Intent and finish
 				// Create a new intent and save the input as an extra
 				Intent intent = new Intent();
-				EventItem.packageIntent(intent, titleString, weather, status, fullDate);
+				EventItem.packageIntent(intent, titleString, weather, status, fullDate, numberOfStands, numberOfClays);
 
 				// Set Activity's result with result code RESULT_OK
 				setResult(RESULT_OK, intent);
@@ -156,6 +170,50 @@ public class AddEventActivity extends Activity {
 		});
 	}
 
+//	// add items into spinner dynamically
+//	public void addItemsOnSpinner2() {
+//
+//		spinner2 = (Spinner) findViewById(R.id.spinner2);
+//		List<String> list = new ArrayList<String>();
+//		list.add("list 1");
+//		list.add("list 2");
+//		list.add("list 3");
+//		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+//				android.R.layout.simple_spinner_item, list);
+//		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//		spinner2.setAdapter(dataAdapter);
+//	}
+
+	public void addListenerOnSpinnerItemSelection() {
+		standSpinner = (Spinner) findViewById(R.id.stand_spinner);
+		standSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+		claySpinner = (Spinner) findViewById(R.id.clay_spinner);
+		claySpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+	}
+//
+//	// get the selected dropdown list value
+//	public void addListenerOnButton() {
+//
+//		standSpinner = (Spinner) findViewById(R.id.stand_spinner);
+//		claySpinner = (Spinner) findViewById(R.id.clay_spinner);
+//		btnSubmit = (Button) findViewById(R.id.btnSubmit);
+//
+//		btnSubmit.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//
+//				Toast.makeText(AddEventActivity.this,
+//						"OnClickListener : " +
+//								"\nSpinner 1 : "+ String.valueOf(standSpinner.getSelectedItem()) +
+//								"\nSpinner 2 : "+ String.valueOf(claySpinner.getSelectedItem()),
+//						Toast.LENGTH_SHORT).show();
+//			}
+//
+//		});
+//	}
+
+
 	protected void resetToDefault() {
 		setDefaultDateTime();
 
@@ -164,6 +222,7 @@ public class AddEventActivity extends Activity {
 		mWeatherRadioGroup.check(R.id.rainingWeather);
 		mStatusRadioGroup.check(R.id.statusNotDone);
 	}
+
 
 
 

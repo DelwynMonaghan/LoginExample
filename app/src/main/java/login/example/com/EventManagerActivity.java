@@ -107,7 +107,6 @@ public class EventManagerActivity extends ListActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
         // Save ToDoItems
         saveItems();
 
@@ -156,13 +155,15 @@ public class EventManagerActivity extends ListActivity {
             String priority = null;
             String status = null;
             Date date = null;
+            String stands = null;
+            String clays = null;
 
             while (null != (title = reader.readLine())) {
                 priority = reader.readLine();
                 status = reader.readLine();
                 date = EventItem.FORMAT.parse(reader.readLine());
                 mAdapter.add(new EventItem(title, Weather.valueOf(priority),
-                        Status.valueOf(status), date));
+                        Status.valueOf(status), date, stands, clays));
             }
 
         } catch (FileNotFoundException e) {

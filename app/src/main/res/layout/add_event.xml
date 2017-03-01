@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="#ebf3f7"
-    android:textColor="#00096f"
-    >
 
-
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <!-- Title -->
-
-    <TextView
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="#ebf3f7"
+        android:textColor="#00096f"
+        >
+        <TextView
         android:id="@+id/TitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,11 +136,67 @@
     <!-- Time and Date -->
 
     <TextView
+        android:id="@+id/Stands"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/weatherGroup"
+        android:layout_marginTop="25dp"
+        android:text="@string/stand_string"
+        android:background="#ebf3f7"
+        android:textColor="#00096f"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/stand_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Stands"
+        android:layout_marginTop="25dp"
+        android:text="@string/number_stand_string"
+        android:background="#ebf3f7"
+        android:textColor="#00096f"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/stand_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/stand_number"
+        android:entries="@array/stand_arrays"
+        android:prompt="@string/stand_prompt">
+    </Spinner>
+
+    <TextView
+        android:id="@+id/clay_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Stands"
+        android:layout_marginTop="25dp"
+        android:text="@string/number_clay_string"
+        android:background="#ebf3f7"
+        android:textColor="#00096f"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentRight="true" />
+
+    <Spinner
+        android:id="@+id/clay_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/clay_arrays"
+        android:prompt="@string/clay_prompt"
+        android:layout_below="@+id/stand_number"
+        android:layout_alignParentEnd="true">
+    </Spinner>
+
+    <TextView
         android:id="@+id/time_and_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/weatherGroup"
+        android:layout_below="@id/clay_spinner"
         android:layout_marginTop="25dp"
         android:text="@string/time_and_date_string"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -220,5 +276,6 @@
         android:text="@string/submit_string"
         android:background="#a9e3ee"
         android:textColor="#00096f"/>
+    </RelativeLayout>
+</ScrollView>
 
-</RelativeLayout>
