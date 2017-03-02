@@ -27,7 +27,6 @@ public class EventItem {
 	public final static String DATE = "date";
 	public final static String CLAYS = "clays";
 	public final static String STANDS = "stands";
-
 	public final static String FILENAME = "filename";
 
 	public final static SimpleDateFormat FORMAT = new SimpleDateFormat(

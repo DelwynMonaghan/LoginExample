@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="#ebf3f7"
     android:textColor="#00096f">
@@ -67,32 +67,11 @@
     </TextView>
 
     <TextView
-        android:id="@+id/DateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/statusCheckBox"
-        android:text="@string/date_string"
-        android:background="#ebf3f7"
-        android:textColor="#00096f">
-    </TextView>
-
-    <TextView
-        android:id="@+id/dateView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/DateLabel"
-        android:layout_toRightOf="@+id/DateLabel"
-        android:background="#ebf3f7"
-        android:textColor="#00096f">
-    </TextView>
-
-    <TextView
         android:id="@+id/standLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/dateView"
+        android:layout_below="@+id/statusCheckBox"
         android:text="@string/stand_string"
         android:background="#ebf3f7"
         android:textColor="#00096f">
@@ -113,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/standView"
+        android:layout_below="@+id/standLabel"
         android:text="@string/clay_string"
         android:background="#ebf3f7"
         android:textColor="#00096f">
@@ -128,5 +107,28 @@
         android:background="#ebf3f7"
         android:textColor="#00096f">
     </TextView>
+
+    <TextView
+        android:id="@+id/DateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/clayLabel"
+        android:text="@string/date_string"
+        android:background="#ebf3f7"
+        android:textColor="#00096f">
+    </TextView>
+
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/DateLabel"
+        android:layout_toRightOf="@+id/DateLabel"
+        android:background="#ebf3f7"
+        android:textColor="#00096f">
+    </TextView>
+
+
 
 </RelativeLayout>

@@ -133,6 +133,11 @@ public class EventListAdapter extends BaseAdapter {
 
 		final TextView dateView = (TextView) itemLayout.findViewById(R.id.dateView);
 		dateView.setText(eventItem.getDate().toString());
+		// TODO - Dispplay Stand and Clay
+		final TextView standView = (TextView) itemLayout.findViewById(R.id.standView);
+		standView.setText(eventItem.getStands());
+		final TextView clayView = (TextView) itemLayout.findViewById(R.id.clayView);
+		clayView.setText(eventItem.getClays());
 
 		// Return the View you just created
 		return itemLayout;
