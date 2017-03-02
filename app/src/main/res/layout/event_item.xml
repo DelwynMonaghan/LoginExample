@@ -87,4 +87,46 @@
         android:textColor="#00096f">
     </TextView>
 
+    <TextView
+        android:id="@+id/standLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dateView"
+        android:text="@string/stand_string"
+        android:background="#ebf3f7"
+        android:textColor="#00096f">
+    </TextView>
+
+    <TextView
+        android:id="@+id/standView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/standLabel"
+        android:layout_toRightOf="@+id/standLabel"
+        android:background="#ebf3f7"
+        android:textColor="#00096f">
+    </TextView>
+
+    <TextView
+        android:id="@+id/clayLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/standView"
+        android:text="@string/clay_string"
+        android:background="#ebf3f7"
+        android:textColor="#00096f">
+    </TextView>
+
+    <TextView
+        android:id="@+id/clayView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/clayLabel"
+        android:layout_toRightOf="@+id/clayLabel"
+        android:background="#ebf3f7"
+        android:textColor="#00096f">
+    </TextView>
+
 </RelativeLayout>

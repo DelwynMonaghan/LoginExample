@@ -99,7 +99,6 @@ public class EventManagerActivity extends ListActivity {
         super.onResume();
 
         // Load saved ToDoItems, if necessary
-
         if (mAdapter.getCount() == 0)
             loadItems();
     }
@@ -162,6 +161,8 @@ public class EventManagerActivity extends ListActivity {
                 priority = reader.readLine();
                 status = reader.readLine();
                 date = EventItem.FORMAT.parse(reader.readLine());
+                stands = reader.readLine();
+                clays = reader.readLine();
                 mAdapter.add(new EventItem(title, Weather.valueOf(priority),
                         Status.valueOf(status), date, stands, clays));
             }

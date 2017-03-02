@@ -43,4 +43,5 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+    <string name="clay_string">Clays Available</string>
 </resources>

@@ -11,6 +11,7 @@
         android:background="#ebf3f7"
         android:textColor="#00096f"
         >
+
         <TextView
         android:id="@+id/TitleLabel"
         android:layout_width="wrap_content"
