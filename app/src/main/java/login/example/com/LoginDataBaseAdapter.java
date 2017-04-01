@@ -12,13 +12,22 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class LoginDataBaseAdapter
 {
-    static final String DATABASE_NAME = "login.db";
+    static final String DATABASE_NAME = "shoot.db";
     static final int DATABASE_VERSION = 1;
     public static final int NAME_COLUMN = 1;
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
-    static final String DATABASE_CREATE = "create table "+"LOGIN"+
-            "( " +"ID"+" integer primary key autoincrement,"+ "USERNAME  text,PASSWORD text); ";
+    static final String DATABASE_CREATE = "create table "+"LOGIN"+"( " +"ID"+" integer primary key autoincrement,"+ "USERNAME  text,PASSWORD text); "+
+            "create table "+"EVENT"+"( "+"ID"+" integer primary key autoincrement,"+ "USERID integer, MOODID integer, GUNID integer, CHOKEID integer, WEATHERID integer, HITSCORE integer, AVAILABLESCORE integer, NOS integer); "+
+            "create table "+"USER"+"( "+"ID"+" integer primary key autoincrement,"+ "NAME text, level int); "+
+            "create table "+"MOOD"+"( "+"ID"+" integer primary key autoincrement,"+ "NAME text); "+
+            "create table "+"WEATHER"+"( "+"ID"+" integer primary key autoincrement,"+ "DESCRIPTION text); "+
+            "create table "+"STANDCLAYS"+"( "+"EVENTID"+" integer foreign key autoincrement,"+ "STANDNUMBER integer, STANDID integer, NOC int, HITCLAYS integer); "+
+            "create table "+"CHOKE"+"( "+"ID"+" integer primary key autoincrement,"+ "NAME text, BRAND text, CHOKESIZE integer); "+
+            "create table "+"GUN"+"( "+"ID"+" integer primary key autoincrement,"+ "NAME text, TYPE text, BRAND text, ORIGIN text, LENGTH integer); "+
+            "create table "+"USERDET"+"( "+"USERID"+" integer primary key autoincrement,"+ "EMAILID integer, PASSID integer); "+
+            "create table "+"EMAIL"+"( "+"ID"+" integer primary key autoincrement,"+ "EMAIL text); "+
+            "create table "+"PASS"+"( "+"ID"+" integer primary key autoincrement,"+ "PASSWORD text); ";
     // Variable to hold the database instance
     public  SQLiteDatabase db;
     // Context of the application using the database.
