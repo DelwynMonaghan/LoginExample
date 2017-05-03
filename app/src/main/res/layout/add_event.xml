@@ -152,13 +152,13 @@
         android:id="@+id/stand_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/Stands"
-        android:layout_marginTop="25dp"
         android:text="@string/number_stand_string"
         android:background="#ebf3f7"
         android:textColor="#00096f"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBaseline="@+id/clay_number"
+        android:layout_alignBottom="@+id/clay_number"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:id="@+id/stand_spinner"
@@ -174,13 +174,13 @@
         android:id="@+id/clay_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Stands"
-        android:layout_marginTop="25dp"
         android:text="@string/number_clay_string"
         android:background="#ebf3f7"
         android:textColor="#00096f"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignParentRight="true" />
+        android:layout_below="@+id/button"
+        android:layout_alignStart="@+id/clay_spinner"
+        android:layout_marginTop="22dp" />
 
     <Spinner
         android:id="@+id/clay_spinner"
@@ -272,11 +272,20 @@
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:text="@string/submit_string"
         android:background="#a9e3ee"
-        android:textColor="#00096f"/>
+        android:textColor="#00096f"
+        android:layout_below="@+id/time_picker_button"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="21dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Stands"
+            android:text="+"
+            android:layout_alignEnd="@+id/TitleLabel" />
     </RelativeLayout>
 </ScrollView>
 

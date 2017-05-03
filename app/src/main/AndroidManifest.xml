@@ -29,5 +29,11 @@
             android:name=".EventManagerActivity"/>
         <activity
             android:name=".AddEventActivity"/>
+        <activity
+            android:name=".EditEventActivity"/>
+        <activity
+            android:name=".StandManagerActivity"/>
+        <activity
+            android:name=".AddStandActivity"/>
     </application>
 </manifest>

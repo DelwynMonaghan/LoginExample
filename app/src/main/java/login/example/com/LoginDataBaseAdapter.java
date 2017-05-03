@@ -73,6 +73,7 @@ public class LoginDataBaseAdapter
         // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
         return numberOFEntriesDeleted;
     }
+
     public String getSinlgeEntry(String userName)
     {
         Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
@@ -86,15 +87,16 @@ public class LoginDataBaseAdapter
         cursor.close();
         return password;
     }
+
     public void  updateEntry(String userName,String password)
     {
         // Define the updated row content.
         ContentValues updatedValues = new ContentValues();
         // Assign values for each row.
         updatedValues.put("USERNAME", userName);
-        updatedValues.put("PASSWORD",password);
+        updatedValues.put("PASSWORD", password);
 
-        String where="USERNAME = ?";
-        db.update("LOGIN",updatedValues, where, new String[]{userName});
+        String where = "USERNAME = ?";
+        db.update("LOGIN", updatedValues, where, new String[]{userName});
     }
 }

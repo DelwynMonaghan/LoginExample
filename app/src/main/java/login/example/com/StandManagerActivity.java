@@ -23,32 +23,32 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.Date;
 
-import login.example.com.EventItem.Status;
-import login.example.com.EventItem.Weather;
+import login.example.com.StandItem.Status;
+import login.example.com.StandItem.Weather;
 
-public class EventManagerActivity extends ListActivity {
+public class StandManagerActivity extends ListActivity {
 
-    // Add a EventItem Request Code
-    private static final int ADD_EVENT_ITEM_REQUEST = 0;
-    private static final int EDIT_EVENT_ITEM_REQUEST = 1;
+    // Add a StandItem Request Code
+    private static final int ADD_STAND_ITEM_REQUEST = 0;
+    private static final int EDIT_STAND_ITEM_REQUEST = 1;
 
 
-    private static final String FILE_NAME = "TodoManagerActivityData.txt";
+    private static final String STAND_FILE_NAME = "StandManagerActivityData.txt";
     private static final String TAG = "Lab-UserInterface";
 
     // IDs for menu items
     private static final int MENU_DELETE = Menu.FIRST;
     private static final int MENU_DUMP = Menu.FIRST + 1;
 
-    EventListAdapter mAdapter;
-    protected static EventManagerActivity instance;
+    StandListAdapter mAdapter;
+    protected static StandManagerActivity instance;
 
-    public static EventManagerActivity getInstance()
+    public static StandManagerActivity getInstance()
     {
         return instance;
     }
 
-    public EventManagerActivity()
+    public StandManagerActivity()
     {
         super();
         instance = this;
@@ -60,7 +60,7 @@ public class EventManagerActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         // Create a new TodoListAdapter for this ListActivity's ListView
-        mAdapter = new EventListAdapter(getApplicationContext());
+        mAdapter = new StandListAdapter(getApplicationContext());
 
         // Put divider between ToDoItems and FooterView
         getListView().setFooterDividersEnabled(true);
@@ -81,8 +81,8 @@ public class EventManagerActivity extends ListActivity {
 
                 // TODO - Attach Listener to FooterView. Implement onClick().
                 // Start the new todo item activity
-                Intent intent = new Intent(getApplicationContext(), AddEventActivity.class);
-                startActivityForResult(intent, ADD_EVENT_ITEM_REQUEST);
+                Intent intent = new Intent(getApplicationContext(), AddStandActivity.class);
+                startActivityForResult(intent, ADD_STAND_ITEM_REQUEST);
             }
         });
 
@@ -97,21 +97,13 @@ public class EventManagerActivity extends ListActivity {
         log("Entered onActivityResult()");
 
         // TODO - Check result code and request code.
-        // If user submitted a new EventItem
-        // Create a new EventItem from the data Intent
+        // If user submitted a new StandItem
+        // Create a new StandItem from the data Intent
         // and then add it to the adapter
-        if (requestCode == ADD_EVENT_ITEM_REQUEST) {
+        if (requestCode == ADD_STAND_ITEM_REQUEST) {
             if (resultCode == RESULT_OK) {
-                EventItem eventItem = new EventItem(data);
-                mAdapter.add(eventItem);
-            }
-        }
-        else if (requestCode == EDIT_EVENT_ITEM_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                EventItem eventItem = new EventItem(data);
-                //mAdapter.add(eventItem);
-                Toast.makeText(instance, "In Edit on eventmanageractivity", Toast.LENGTH_SHORT).show();
-                mAdapter.edit(eventItem);
+                StandItem standItem = new StandItem(data);
+                mAdapter.add(standItem);
             }
         }
 
@@ -162,8 +154,8 @@ public class EventManagerActivity extends ListActivity {
     private void dump() {
 
         for (int i = 0; i < mAdapter.getCount(); i++) {
-            String data = ((EventItem) mAdapter.getItem(i)).toLog();
-            log("Item " + i + ": " + data.replace(EventItem.ITEM_SEP, ","));
+            String data = ((StandItem) mAdapter.getItem(i)).toLog();
+            log("Item " + i + ": " + data.replace(StandItem.ITEM_SEP, ","));
         }
 
     }
@@ -172,7 +164,7 @@ public class EventManagerActivity extends ListActivity {
     private void loadItems() {
         BufferedReader reader = null;
         try {
-            FileInputStream fis = openFileInput(FILE_NAME);
+            FileInputStream fis = openFileInput(STAND_FILE_NAME);
             reader = new BufferedReader(new InputStreamReader(fis));
 
             String title = null;
@@ -185,10 +177,10 @@ public class EventManagerActivity extends ListActivity {
             while (null != (title = reader.readLine())) {
                 priority = reader.readLine();
                 status = reader.readLine();
-                date = EventItem.FORMAT.parse(reader.readLine());
+                date = StandItem.FORMAT.parse(reader.readLine());
                 stands = reader.readLine();
                 clays = reader.readLine();
-                mAdapter.add(new EventItem(title, Weather.valueOf(priority),
+                mAdapter.add(new StandItem(title, Weather.valueOf(priority),
                         Status.valueOf(status), date, stands, clays));
             }
 
@@ -213,7 +205,7 @@ public class EventManagerActivity extends ListActivity {
     private void saveItems() {
         PrintWriter writer = null;
         try {
-            FileOutputStream fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+            FileOutputStream fos = openFileOutput(STAND_FILE_NAME, MODE_PRIVATE);
             writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
                     fos)));
 

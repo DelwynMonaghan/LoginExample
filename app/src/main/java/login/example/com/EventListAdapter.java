@@ -1,6 +1,10 @@
 package login.example.com;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +13,14 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import login.example.com.EventItem.Status;
+
 
 public class EventListAdapter extends BaseAdapter {
 
@@ -41,6 +47,20 @@ public class EventListAdapter extends BaseAdapter {
 
 	}
 
+	public void remove(EventItem item) {
+
+		mItems.remove(item);
+		notifyDataSetChanged();
+	}
+
+	public void edit(EventItem item) {
+		Intent intent = new Intent(mContext.getApplicationContext(), EditEventActivity.class);
+		//startActivityForResult(intent, EDIT_EVENT_ITEM_REQUEST);
+		//mItems.remove(item);
+
+		notifyDataSetChanged();
+	}
+	// C
 	// Clears the list adapter of all items.
 
 	public void clear() {
@@ -89,8 +109,11 @@ public class EventListAdapter extends BaseAdapter {
 
 		//TODO - Inflate the View for this EventItem
 		// from event_item.xmll.
-		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View itemLayout = inflater.inflate(R.layout.event_item, parent, false);
+
+// 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//		View itemLayout = inflater.inflate(R.layout.event_item, parent, false);
+
+		final RelativeLayout itemLayout = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.event_item, parent, false);
 
 		//TODO - Fill in specific EventItem data
 		// Remember that the data that goes in this View
@@ -120,6 +143,64 @@ public class EventListAdapter extends BaseAdapter {
 				}
 				else
 					eventItem.setStatus(Status.NOTDONE);
+			}
+		});
+		//----------------------------------------------//
+		itemLayout.setOnLongClickListener(new View.OnLongClickListener() {
+
+											  @Override
+											  public boolean onLongClick(View view) {
+												  AlertDialog.Builder alert = new AlertDialog.Builder(EventManagerActivity.getInstance());
+
+												  alert.setTitle("Alert!");
+												  alert.setMessage("Are you sure to delete record?");
+
+												  alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+													  @Override
+													  public void onClick(DialogInterface dialogInterface, int i) {
+														  remove(eventItem);
+														  dialogInterface.dismiss();
+													  }
+												  });
+
+												  alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+													  @Override
+													  public void onClick(DialogInterface dialogInterface, int i) {
+														  dialogInterface.dismiss();
+													  }
+												  });
+
+												  alert.show();
+												  return false;
+											  }
+										  });
+
+		//attempting to set Edit function
+		itemLayout.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				AlertDialog.Builder alert = new AlertDialog.Builder(EventManagerActivity.getInstance());
+
+				alert.setTitle("Alert!");
+				alert.setMessage("Do you want to edit this record?");
+
+				alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i) {
+						edit(eventItem);
+						dialogInterface.dismiss();
+					}
+				});
+
+				alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i) {
+						dialogInterface.dismiss();
+					}
+				});
+
+				alert.show();
 			}
 		});
 
